@@ -1,0 +1,11 @@
+<suite name="Suite">
+	<test thread-count="5" name="Test">
+		<classes>
+			<class name="com.actitime.testscript.CustomerModule"/>
+				<methods>
+					<include name="modifyCustomer"/>
+					<exclude name="createCustomer" />
+				</methods>
+		</classes>
+	</test> 
+</suite> 
