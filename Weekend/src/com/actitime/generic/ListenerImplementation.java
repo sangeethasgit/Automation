@@ -11,24 +11,31 @@ import org.testng.ITestListener;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 
-public class ListenerImplementation extends BaseClass implements ITestListener {
+public class ListenerImplementation extends BaseClass implements ITestListener{
 	@Override
-	public void onTestStart(ITestResult result) {
-	}@Override
 	public void onTestSuccess(ITestResult result) {
-String name = result.getName();		Reporter.log(name+" method has got passed",true);
+		String res = result.getName();
+		Reporter.log(res+" method has got passed");
 	}@Override
 	public void onTestFailure(ITestResult result) {
-	String name = result.getName();
-	Reporter.log(name+" method has got failed",true);
-	TakesScreenshot ts=(TakesScreenshot) driver;
-	File temp = ts.getScreenshotAs(OutputType.FILE);
-	File dest=new File("./screenshots/"+name+".png");
-	try {FileUtils.copyFile(temp, dest);
-	} catch (IOException e) {
-	}}@Override
+//It is used to get the name of the current test method that has got executed
+//To take the screenshot in multiple names we will get the names of the methods
+		String res = result.getName();
+		Reporter.log(res+" method has got failed");
+		TakesScreenshot ts=(TakesScreenshot) driver;
+		File temp = ts.getScreenshotAs(OutputType.FILE);
+//		String date = LocalDateTime.now().toString().replace(':', '-');
+//		System.out.println(date);
+		File dest=new File("./screenshots/"+res+".png");
+		try {
+			FileUtils.copyFile(temp, dest);
+		} catch (IOException e) {	}
+	}@Override
 	public void onTestSkipped(ITestResult result) {
-String name = result.getName();	Reporter.log(name+" method has got skipped",true);
+		String res = result.getName();
+		Reporter.log(res+" method has got skipped");
+	}@Override
+	public void onTestStart(ITestResult result) {
 	}@Override
 	public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
 	}@Override
@@ -38,5 +45,5 @@ String name = result.getName();	Reporter.log(name+" method has got skipped",true
 	}@Override
 	public void onFinish(ITestContext context) {
 	}
-
+	
 }

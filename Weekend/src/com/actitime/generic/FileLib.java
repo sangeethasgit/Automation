@@ -9,30 +9,30 @@ import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 /**
- * It is a generic class which consists of generic method to read data from
- * property file, excel and also write data into excel
+ * It is a generic class which contains generic methods for reading data from property, excel file
+ * and write data into excel file
  * @author QSP
  */
 public class FileLib {
 /**
- * It is generic method to read data from property file
+ * It is a generic method to read data from property file
  * @param key
- * @return value associated with the mentioned key
+ * @return value associated with the specified key in the form of String
  * @throws IOException
  */
 public String readDataFromProperty(String key) throws IOException {
-	FileInputStream fis=new FileInputStream("./data/commondata.properties");
-	Properties p=new Properties();
-	p.load(fis);
-	String data = p.getProperty(key);
+	FileInputStream fis =new FileInputStream("./data/commondata.properties");
+	Properties pobj=new Properties();
+	pobj.load(fis);
+	String data = pobj.getProperty(key);
 	return data;
 }
 /**
- * It is a generic method which is used to read data from excel file
+ * It is a generic method to read data from excel file
  * @param sheet
  * @param row
  * @param cell
- * @return value from  mentioned sheet, row, cell
+@return It will return the String data present in specified sheet name , row index and cell index
  * @throws EncryptedDocumentException
  * @throws IOException
  */
@@ -43,7 +43,7 @@ public String readDataFromExcel(String sheet,int row,int cell) throws EncryptedD
 	return data;
 }
 /**
- * It is a generic method which is used to write data into excel file
+ * It is a generic method to write data into specified cell
  * @param sheet
  * @param row
  * @param cell
